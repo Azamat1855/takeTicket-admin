@@ -1,16 +1,37 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
 import { Navbar, Footer, Sidebar, ThemeSettings } from './Components';
-import { Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers, Kanban, Line, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor } from './Pages';
+import { Ecommerce } from './Templates';
 import './App.css';
 
 import { useStateContext } from './Contexts/ContextProvider';
+import Dashboard from './Pages/Dashboard/Dashboard';
+import Orders from './Pages/Orders/Orders';
+import Reviews from './Pages/Reviews/Reviews';
+import CreateEvent from './Pages/Events/CreateEvent/CreateEvent';
+import EditEvent from './Pages/Events/EditEvent/EditEvent';
+import EventsDashboard from './Pages/Events/EventsDashboard/EventsDashboard';
+import AllUsers from './Pages/Users/AllUsers/AllUsers';
+import Customers from './Pages/Users/Customers/Customers';
+import Workers from './Pages/Users/Workers/Workers';
 
 const App = () => {
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
+
+  const [routes] = useState([
+    { path: '/dashboard', element: <Dashboard /> },
+    { path: '/orders', element: <Orders /> },
+    { path: '/reviews', element: <Reviews /> },
+    { path: '/create-events', element: <CreateEvent /> },
+    { path: '/edit-events', element: <EditEvent /> },
+    { path: '/events-dashboard', element: <EventsDashboard /> },
+    { path: '/all-users', element: <AllUsers /> },
+    { path: '/customers', element: <Customers /> },
+    { path: '/workers', element: <Workers /> },
+  ]);
 
   useEffect(() => {
     const currentThemeColor = localStorage.getItem('colorMode');
@@ -26,10 +47,7 @@ const App = () => {
       <BrowserRouter>
         <div className="flex relative dark:bg-main-dark-bg">
           <div className="fixed right-4 bottom-4" style={{ zIndex: '1000' }}>
-            <TooltipComponent
-              content="Settings"
-              position="Top"
-            >
+            <TooltipComponent content="Settings" position="Top">
               <button
                 type="button"
                 onClick={() => setThemeSettings(true)}
@@ -38,11 +56,10 @@ const App = () => {
               >
                 <FiSettings />
               </button>
-
             </TooltipComponent>
           </div>
           {activeMenu ? (
-            <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
+            <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white">
               <Sidebar />
             </div>
           ) : (
@@ -53,42 +70,20 @@ const App = () => {
           <div
             className={
               activeMenu
-                ? 'dark:bg-main-dark-bg  bg-main-bg min-h-screen md:ml-72 w-full  '
-                : 'bg-main-bg dark:bg-main-dark-bg  w-full min-h-screen flex-2 '
+                ? 'dark:bg-main-dark-bg bg-main-bg min-h-screen md:ml-72 w-full'
+                : 'bg-main-bg dark:bg-main-dark-bg w-full min-h-screen flex-2'
             }
           >
-            <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
+            <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full">
               <Navbar />
             </div>
             <div>
-              {themeSettings && (<ThemeSettings />)}
+              {themeSettings && <ThemeSettings />}
 
               <Routes>
-                {/* dashboard  */}
-                <Route path="/" element={(<Ecommerce />)} />
-                <Route path="/ecommerce" element={(<Ecommerce />)} />
-
-                {/* pages  */}
-                <Route path="/orders" element={<Orders />} />
-                <Route path="/employees" element={<Employees />} />
-                <Route path="/customers" element={<Customers />} />
-
-                {/* apps  */}
-                <Route path="/kanban" element={<Kanban />} />
-                <Route path="/editor" element={<Editor />} />
-                <Route path="/calendar" element={<Calendar />} />
-                <Route path="/color-picker" element={<ColorPicker />} />
-
-                {/* charts  */}
-                <Route path="/line" element={<Line />} />
-                <Route path="/area" element={<Area />} />
-                <Route path="/bar" element={<Bar />} />
-                <Route path="/pie" element={<Pie />} />
-                <Route path="/financial" element={<Financial />} />
-                <Route path="/color-mapping" element={<ColorMapping />} />
-                <Route path="/pyramid" element={<Pyramid />} />
-                <Route path="/stacked" element={<Stacked />} />
-
+                {routes.map((route, index) => (
+                  <Route key={index} path={route.path} element={route.element} />
+                ))}
               </Routes>
             </div>
             <Footer />

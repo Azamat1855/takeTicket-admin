@@ -474,85 +474,60 @@ export const links = [
     title: 'Dashboard',
     links: [
       {
-        name: 'ecommerce',
+        name: 'dashboard',
         icon: <FiShoppingBag />,
       },
     ],
   },
-
   {
-    title: 'Pages',
+    title: 'Orders',
     links: [
       {
         name: 'orders',
-        icon: <AiOutlineShoppingCart />,
+        icon: <FiShoppingBag />,
       },
+    ],
+  },
+  {
+    title: 'Users',
+    links: [
       {
-        name: 'employees',
+        name: 'all-users',
         icon: <IoMdContacts />,
       },
       {
         name: 'customers',
+        icon: <AiOutlineShoppingCart />,
+      },
+      {
+        name: 'workers',
         icon: <RiContactsLine />,
       },
     ],
   },
   {
-    title: 'Apps',
+    title: 'Events',
     links: [
       {
-        name: 'calendar',
+        name: 'events-dashboard',
         icon: <AiOutlineCalendar />,
       },
       {
-        name: 'kanban',
+        name: 'create-events',
         icon: <BsKanban />,
       },
       {
-        name: 'editor',
+        name: 'edit-events',
         icon: <FiEdit />,
-      },
-      {
-        name: 'color-picker',
-        icon: <BiColorFill />,
-      },
+      }
     ],
   },
   {
-    title: 'Charts',
+    title: 'Reviews',
     links: [
       {
-        name: 'line',
+        name: 'reviews',
         icon: <AiOutlineStock />,
-      },
-      {
-        name: 'area',
-        icon: <AiOutlineAreaChart />,
-      },
-
-      {
-        name: 'bar',
-        icon: <AiOutlineBarChart />,
-      },
-      {
-        name: 'pie',
-        icon: <FiPieChart />,
-      },
-      {
-        name: 'financial',
-        icon: <RiStockLine />,
-      },
-      {
-        name: 'color-mapping',
-        icon: <BsBarChart />,
-      },
-      {
-        name: 'pyramid',
-        icon: <GiLouvrePyramid />,
-      },
-      {
-        name: 'stacked',
-        icon: <AiOutlineBarChart />,
       },
     ],
   },
