@@ -17,6 +17,8 @@ import EventsDashboard from './Pages/Events/EventsDashboard/EventsDashboard';
 import AllUsers from './Pages/Users/AllUsers/AllUsers';
 import Customers from './Pages/Users/Customers/Customers';
 import Workers from './Pages/Users/Workers/Workers';
+import EventsTable from './Pages/Events/EventsTable/EventsTable';
+
 
 const App = () => {
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
@@ -31,6 +33,7 @@ const App = () => {
     { path: '/all-users', element: <AllUsers /> },
     { path: '/customers', element: <Customers /> },
     { path: '/workers', element: <Workers /> },
+    { path: '/events-table', element: <EventsTable/>},
   ]);
 
   useEffect(() => {
