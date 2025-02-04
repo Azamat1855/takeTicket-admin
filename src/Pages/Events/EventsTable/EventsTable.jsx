@@ -15,8 +15,9 @@ import { Header } from "../../../Components/";
 
 const EventsTable = () => {
   const [events, setEvents] = useState([]);
-  const { sendRequest, loading, error } = useApiRequest();
+  const { sendRequest } = useApiRequest();
   const API_URL = process.env.REACT_APP_API_URL;
+
 
   useEffect(() => {
     sendRequest(API_URL, "GET").then((response) => {
@@ -41,14 +42,11 @@ const EventsTable = () => {
   };
 
   return (
-    <div className="m-2 md:m-10 p-2 md:p-10 rounded-3xl">
+    <div className="m-2 md:m-10 p-2 md:p-10 ">
       <Header title="Events Table" send="Send Date" />
-
-      {loading && <p>Loading...</p>}
-      {error && <p className="text-red-500">{error}</p>}
-
       <ScheduleComponent
-        height="w-[500%]"
+        height="w-[200%]"
+        width="h-[100%]"
         eventSettings={{ dataSource: events }}
         selectedDate={new Date(2024, 0, 10)}
         actionComplete={onActionComplete}

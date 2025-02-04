@@ -22,7 +22,6 @@ import EventsTable from './Pages/Events/EventsTable/EventsTable';
 
 const App = () => {
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
-
   const [routes] = useState([
     { path: '/dashboard', element: <Dashboard /> },
     { path: '/orders', element: <Orders /> },
