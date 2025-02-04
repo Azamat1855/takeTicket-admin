@@ -509,7 +509,7 @@ export const links = [
     title: 'Events',
     links: [
       {
-        name: 'events-dashboard',
+        name: 'events-table',
         icon: <AiOutlineCalendar />,
       },
       {
