@@ -2,16 +2,15 @@ import React from 'react';
 import { IoIosSend } from "react-icons/io";
 
 
-const Header = ({ title, send }) => {
+const Header = ({ title }) => {
   return (
     <div>
-      <div className="flex items-center  justify-between w-full content-start mb-2">
+      <div className="flex items-center  justify-between w-full  ">
        <p className="text-3xl font-extrabold tracking-tight text-accent ">
           {title}
         </p>
-        <button className="btn btn-accent rounded-xl">
-          <IoIosSend className="font-bold"/>{send}</button>
-       </div>
+      </div>
+      
       </div>
   );
 };

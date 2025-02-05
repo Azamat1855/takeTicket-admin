@@ -12,6 +12,7 @@ import {
 } from "@syncfusion/ej2-react-schedule";
 import useApiRequest from "../../../hooks/useApiRequest";
 import { Header } from "../../../Components/";
+import { IoIosSend } from "react-icons/io";
 
 const EventsTable = () => {
   const [events, setEvents] = useState([]);
@@ -41,10 +42,39 @@ const EventsTable = () => {
     }
   };
 
+  const openModal = () => document.getElementById("my_modal_2").showModal();
+  const closeModal = () => document.getElementById("my_modal_2").close();
+
+
   return (
-    <div className="m-2 md:m-10 p-2 md:p-10 ">
-      <Header title="Events Table" send="Send Date" />
-      <ScheduleComponent
+    <div className=" md:m-4 p-2 md:p-10 ">
+      <Header />
+      <div className="flex flex-wrap items-center justify-between">
+        <p className="text-accent p-2 font-bold text-3xl">Send Date</p>
+        <button className="btn btn-accent" onClick={openModal}>
+          <IoIosSend /> Add Date
+        </button>
+        <dialog id="my_modal_2" className="modal">
+          <div className="modal-box bg-accent w-full max-w-2xl rounded-2xl h-[80vh] overflow-auto flex flex-col gap-2">
+            <div className="p-5">
+              <p className="font-bold text-3xl text-error-content">Konsert kunlarini qoshish:</p>
+            </div>
+            <ScheduleComponent
+              height="100%"
+              width="100%"
+              eventSettings={{ dataSource: events }}
+              selectedDate={new Date(2024, 0, 10)}
+              actionComplete={onActionComplete}
+            >
+              <Inject services={[Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop]} />
+            </ScheduleComponent>
+            <button className="btn btn-error mt-4" onClick={closeModal}>Close</button>
+          </div>
+        </dialog>
+      </div>
+      <div>
+      <div className="mt-4">
+        <ScheduleComponent
         height="w-[200%]"
         width="h-[100%]"
         eventSettings={{ dataSource: events }}
@@ -53,6 +83,8 @@ const EventsTable = () => {
       >
         <Inject services={[Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop]} />
       </ScheduleComponent>
+        </div>
+      </div>
     </div>
   );
 };
