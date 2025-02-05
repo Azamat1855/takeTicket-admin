@@ -10,9 +10,9 @@ const useApiRequest = () => {
 
     try {
       const options = {
-        method,
         headers: {
           "Content-Type": "application/json",
+          method: "GET  "
         },
       };
       if (body) options.body = JSON.stringify(body);
