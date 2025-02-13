@@ -16,23 +16,26 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-
+  
     try {
       const response = await axios.post(
-        "https://iticket-reference-backend.onrender.com/api/v1/login",
+        "https://api.taketicket.uz/api/v1/login",
         { email, password }
       );
-      console.log(response)
+      localStorage.setItem("user", response.data.data.user)
+      localStorage.setItem("token", response.data.data.accessToken);  // Сохранение токена в localStorage
       dispatch(login(response.data)); // Сохранение данных пользователя в Redux
       toast.success("Login successful! 🎉");
+      setEmail("");  // Очищаем email
+      setPassword(""); // Очищаем пароль
       navigate("/dashboard"); // Перенаправление в кабинет
     } catch (err) {
+      console.error("Login error:", err.response || err.message);
       toast.error(err.response?.data?.message || "Login failed ❌");
-      console.error("Login error:", err);
     } finally {
       setLoading(false);
     }
-  };
+  };  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-300">
