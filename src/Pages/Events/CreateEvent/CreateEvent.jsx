@@ -120,7 +120,7 @@ const CreateEvent = () => {
       newErrors["title.uz"] = "Title (UZ) is required";
     }
 
-    if (!event.area.trim()) {
+    if (!event?.area?.trim()) {
       newErrors["area"] = "Area is required";
     }
 

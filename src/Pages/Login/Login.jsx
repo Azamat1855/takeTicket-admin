@@ -22,7 +22,7 @@ const Login = () => {
         "https://iticket-reference-backend.onrender.com/api/v1/login",
         { email, password }
       );
-
+      console.log(response)
       dispatch(login(response.data)); // Сохранение данных пользователя в Redux
       toast.success("Login successful! 🎉");
       navigate("/dashboard"); // Перенаправление в кабинет
