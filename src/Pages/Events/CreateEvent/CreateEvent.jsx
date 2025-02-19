@@ -191,13 +191,13 @@ const CreateEvent = () => {
       }
   
       try {
-        const response = await fetch("https://api.taketicket.uz/api/v1/events", {
-          method: "POST",
-          headers: {
-            "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTBiMmUwZDU0YTBlYjFjNjlkZjYwNiIsImVtYWlsIjoiYWRtaW5AZXhhbXBsZS5jb20iLCJpYXQiOjE3Mzg0MDQ0NTIsImV4cCI6MTczOTAwOTI1Mn0.cncDa6SlJo9EQApmjyAahzHTay37rdoZJz735bO45Mc`,
-          },
-          body: formData, // Send FormData directly
-        });
+          const response = await fetch("https://api.taketicket.uz/api/v1/events", {
+            method: "POST",
+            headers: {
+              "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTBiMmUwZDU0YTBlYjFjNjlkZjYwNiIsImVtYWlsIjoiYWRtaW5AZXhhbXBsZS5jb20iLCJpYXQiOjE3Mzg0MDQ0NTIsImV4cCI6MTczOTAwOTI1Mn0.cncDa6SlJo9EQApmjyAahzHTay37rdoZJz735bO45Mc`,
+            },
+            body: formData, // Send FormData directly
+          });
   
         if (response.ok) {
           console.log("Event created successfully!");
