@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useStateContext } from '../../../Contexts/ContextProvider';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const Customers = () => {
-  const { currentColor, currentMode } = useStateContext();
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -55,9 +53,6 @@ const Customers = () => {
     setCurrentPage(1);
   };
 
-  const getTextColor = () => (currentMode === 'dark' ? 'text-base-200' : 'text-gray-900');
-  const getBackgroundColor = () => (currentMode === 'dark' ? 'bg-base-100' : 'bg-white');
-
   const safeFilteredUsers = Array.isArray(filteredUsers) ? filteredUsers : [];
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
@@ -65,14 +60,12 @@ const Customers = () => {
   const totalPages = Math.ceil(safeFilteredUsers.length / usersPerPage);
 
   return (
-    <div className={`p-6 rounded-lg shadow-lg ${getBackgroundColor()}`}>
-      <h2 className={`text-2xl font-bold mb-4 ${getTextColor()}`} style={{ color: currentColor }}>
-        Список пользователей
-      </h2>
+    <div className="p-6 rounded-lg shadow-lg bg-white">
+      <h2 className="text-2xl font-bold mb-4 text-gray-900">Список пользователей</h2>
 
       <input
         type="text"
-        className="input input-bordered w-full py-2 px-4 rounded-lg bg-base-300 text-base-content mb-4"
+        className="input input-bordered w-full py-2 px-4 rounded-lg bg-gray-200 text-gray-900 mb-4"
         placeholder="Поиск пользователей..."
         value={searchTerm}
         onChange={handleSearch}
@@ -81,27 +74,25 @@ const Customers = () => {
       <div className="overflow-x-auto">
         {isLoading ? (
           <div className="flex justify-center items-center py-12">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-base-content"></div>
+            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-gray-900"></div>
           </div>
         ) : (
           <table className="table w-full rounded-lg shadow-lg">
             <thead>
-              <tr className="bg-base-300 text-base-content">
+              <tr className="bg-gray-300 text-gray-900">
                 {['ID', 'Имя', 'Email', 'Телефон', 'Роль'].map((header, index) => (
-                  <th key={index} className="py-3 px-6 text-sm font-medium">
-                    {header}
-                  </th>
+                  <th key={index} className="py-3 px-6 text-sm font-medium">{header}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {currentUsers.map((user) => (
-                <tr key={user._id} className="hover:bg-base-300 cursor-pointer border-b border-base-400">
-                  <td className={`py-3 px-6 text-sm ${getTextColor()}`}>{user._id}</td>
-                  <td className={`py-3 px-6 text-sm ${getTextColor()}`}>{user.firstName} {user.lastName}</td>
-                  <td className={`py-3 px-6 text-sm ${getTextColor()}`}>{user.email}</td>
-                  <td className={`py-3 px-6 text-sm ${getTextColor()}`}>{user.phoneNumber}</td>
-                  <td className={`py-3 px-6 text-sm ${getTextColor()}`}>{user.role}</td>
+                <tr key={user._id} className="hover:bg-gray-300 cursor-pointer border-b border-gray-400">
+                  <td className="py-3 px-6 text-sm text-gray-900">{user._id}</td>
+                  <td className="py-3 px-6 text-sm text-gray-900">{user.firstName} {user.lastName}</td>
+                  <td className="py-3 px-6 text-sm text-gray-900">{user.email}</td>
+                  <td className="py-3 px-6 text-sm text-gray-900">{user.phoneNumber}</td>
+                  <td className="py-3 px-6 text-sm text-gray-900">{user.role}</td>
                 </tr>
               ))}
             </tbody>
@@ -112,15 +103,15 @@ const Customers = () => {
       {/* Пагинация */}
       <div className="flex justify-center items-center mt-4">
         <button
-          className="btn btn-sm bg-base-300 text-base-content mx-2"
+          className="btn btn-sm bg-gray-300 text-gray-900 mx-2"
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
         >
           <FaChevronLeft />
         </button>
-        <span className="text-base-content px-4">{currentPage} / {totalPages}</span>
+        <span className="text-gray-900 px-4">{currentPage} / {totalPages}</span>
         <button
-          className="btn btn-sm bg-base-300 text-base-content mx-2"
+          className="btn btn-sm bg-gray-300 text-gray-900 mx-2"
           onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
           disabled={currentPage === totalPages}
         >
